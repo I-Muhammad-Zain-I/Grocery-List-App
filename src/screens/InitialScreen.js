@@ -6,7 +6,14 @@ import COLORS from '../constants/Color'
 import SimpleButton from '../components/SimpleButton'
 
 
-const InitialScreen = () => {
+const InitialScreen = (props) => {
+
+
+  const onPressHandler = () => {
+    props.onAddModalVisible(true);
+  }
+
+
   return (
     <View style={styles.rootContainer}>
       <Text style={styles.headerText}>
@@ -17,6 +24,7 @@ const InitialScreen = () => {
       </View> 
       <SimpleButton 
         title = "Add Items"
+        onPress={onPressHandler}
       />
     </View>
   )

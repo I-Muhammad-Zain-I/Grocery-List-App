@@ -5,6 +5,7 @@ const SimpleButton = (props) => {
 
   const onPressHandler = () => {
     console.log("Pressed Simple Button")
+    props.onPress()
   }
 
   return (

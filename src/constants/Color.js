@@ -9,6 +9,8 @@ const COLORS = {
 
   "turquoise-100": "#E0FFF0",
   "turquoise-400": "#71F8B7",
+
+  "red-100": "#FF2147",
   "red-300": "#C20019",
 
   "dark-purple-100": "#CFCBFF",
