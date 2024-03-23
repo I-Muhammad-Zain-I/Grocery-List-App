@@ -29,6 +29,16 @@ export default function App() {
   const addModalVisibleHandler = (value) => {
     setAddItemsModalIsVisible(value)
   }
+  
+  const addGroceryItem = (groceryItem) => {
+    console.log(groceryItem);
+    setGroceryItems((gi) => [groceryItem, ...gi]);
+  }
+
+
+
+
+
 
   let screen;
 
@@ -37,19 +47,22 @@ export default function App() {
   }
 
   if(addItemsModalIsVisible == true) {
-    screen = <AddItemScreen visible={addItemsModalIsVisible}/>
-  }
+    screen = <AddItemScreen 
+                visible={addItemsModalIsVisible}
+                setVisible = {addModalVisibleHandler} 
+                lastItemId = {!groceryItems.length ? groceryItems[0]?.id : 0}
+                addGroceryItem = {addGroceryItem}
+              />
+  }     
   else if(groceryItems.length == 0) {
     screen = <InitialScreen onAddModalVisible = {addModalVisibleHandler}/>
   }
   else if (groceryItems.length > 0) {
+    screen = <InitialScreen onAddModalVisible = {addModalVisibleHandler}/>
     
   }
   
 
-  const addGroceryItem = (groceryItem) => {
-    setGroceryItems((gi) => [groceryItem, ...gi]);
-  }
 
   
 

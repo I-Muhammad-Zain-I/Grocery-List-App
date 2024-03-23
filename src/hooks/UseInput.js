@@ -11,13 +11,13 @@ const useInput = (validityFunc) => {
     setEnteredValue(enteredValue); 
   }
 
-  
+  console.log('touched', touched)
 
-  const isInValid =  validityFunc(value) && touched;
+  const isValid =  validityFunc(value) && touched;
 
   return {
     value,
-    isInValid,
+    isValid,
     touched,
     setTouched,
     onValueChangeHandler

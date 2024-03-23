@@ -24,6 +24,11 @@ const InitialScreen = (props) => {
       </View> 
       <SimpleButton 
         title = "Add Items"
+        border= {true}
+        bgColor = {COLORS['orange-200']}
+        hoverBgColor = {COLORS['orange-400']}
+        width = {"70%"}
+        textColor = {COLORS['orange-800']}
         onPress={onPressHandler}
       />
     </View>
