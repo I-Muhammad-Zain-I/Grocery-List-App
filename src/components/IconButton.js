@@ -7,22 +7,24 @@ const IconButton = (props) => {
 
   const onPressHandler = () => {
     console.log("Icon Button Pressed");
+    props.onPress();
   }
 
 
-
-
-
-
+  const imageContainerStyles = {
+    padding: 8,
+    borderRadius: 10,
+    backgroundColor: props.bgColor
+  }
 
 
   return (
     <View>
       <Pressable
-      style={({pressed}) => (pressed ? [styles.imageContainer, styles.pressed] : styles.imageContainer)}
-      onPress={onPressHandler}
+        style={({ pressed }) => (pressed ? [imageContainerStyles, styles.pressed] : imageContainerStyles)}
+        onPress={onPressHandler}
       >
-        <Image 
+        <Image
           source={props.source}
           style={styles.image}
         />
@@ -39,7 +41,6 @@ const styles = StyleSheet.create({
     height: 24
   },
   imageContainer: {
-    backgroundColor: COLORS['turquoise-100'],
     padding: 8,
     borderRadius: 10
   },

@@ -36,6 +36,12 @@ export default function App() {
     setGroceryItems((gi) => [groceryItem, ...gi]);
   }
 
+  const removeGroceryItem = (groceryItemId) => {
+    console.log("removing");
+    console.log(groceryItemId);
+    let newGroceryList = groceryItems.filter((item) => item.id !== groceryItemId);
+    setGroceryItems(newGroceryList);
+  }
 
 
 
@@ -62,7 +68,7 @@ export default function App() {
     screen = <DisplayItemScreen 
               groceryItems = {groceryItems}
               onAddModalVisible = {addModalVisibleHandler}
-
+              removeGroceryItem = {removeGroceryItem}
     />
     
   }

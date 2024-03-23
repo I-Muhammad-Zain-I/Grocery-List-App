@@ -7,6 +7,7 @@ const GroceryItem = (props) => {
 
   const onPressHandler = () => {
     console.log("List Item Pressed");
+    props.onRemove(props.item.id)
   }
 
 
@@ -23,7 +24,10 @@ const GroceryItem = (props) => {
         </View>
         <View style={styles.imagesContainer}>
           {/* <IconButton source={require('../../assets/images/done.png')} /> */}
-          <IconButton source={require('../../assets/images/edit.png')} />
+          <IconButton 
+            source={require('../../assets/images/edit.png')} 
+            bgColor = {COLORS['turquoise-100']}
+          />
           {/* <IconButton source={require('../../assets/images/delete.png')} /> */}
         </View>
      
