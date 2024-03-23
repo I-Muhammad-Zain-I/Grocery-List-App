@@ -5,6 +5,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import {useFonts} from 'expo-font';
 import InitialScreen from './src/screens/InitialScreen';
 import AddItemScreen from './src/screens/AddItemScreen';
+import DisplayItemScreen from './src/screens/DisplayItemScreen';
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
@@ -58,7 +59,11 @@ export default function App() {
     screen = <InitialScreen onAddModalVisible = {addModalVisibleHandler}/>
   }
   else if (groceryItems.length > 0) {
-    screen = <InitialScreen onAddModalVisible = {addModalVisibleHandler}/>
+    screen = <DisplayItemScreen 
+              groceryItems = {groceryItems}
+              onAddModalVisible = {addModalVisibleHandler}
+
+    />
     
   }
   

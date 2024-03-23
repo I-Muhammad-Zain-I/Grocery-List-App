@@ -39,7 +39,7 @@ const AddItemScreen = (props) => {
       return;
     }
     let newGroceryItem = {
-      id: props.lastItemId,
+      id: props.lastItemId + 1,
       name: name,
       quantity: quantity
     }
