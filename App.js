@@ -1,12 +1,12 @@
 import React, { useCallback, useState } from 'react';
-import { Image, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import {SafeAreaView, StyleSheet } from 'react-native';
 
 import * as SplashScreen from 'expo-splash-screen';
 import {useFonts} from 'expo-font';
+
 import InitialScreen from './src/screens/InitialScreen';
-import AddItemScreen from './src/screens/AddItemScreen';
 import DisplayItemScreen from './src/screens/DisplayItemScreen';
-import EditItemScreen from './src/screens/EditItemScreen';
+import UpdateItemScreen from './src/screens/UpdateItemScreen';
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
@@ -19,8 +19,7 @@ export default function App() {
   const [editItemsModalIsVisible, setEditItemsModalIsVisible] = useState(false);
 
   const [fontsLoaded, fontError] = useFonts({
-    'lobster-two-regular': require('./assets/fonts/LobsterTwo-Bold.ttf'),
-    'lobster-two-bold': require('./assets/fonts/LobsterTwo-Regular.ttf'),
+    'lobster-two-bold': require('./assets/fonts/LobsterTwo-Bold.ttf'),
     'notosans-regular': require('./assets/fonts/NotoSans-Regular.ttf'),
     'notosans-bold': require('./assets/fonts/NotoSans-Bold.ttf'),
   });
@@ -31,6 +30,7 @@ export default function App() {
     }
   }, [fontsLoaded, fontError]);
 
+
   const addModalVisibleHandler = (value) => {
     setAddItemsModalIsVisible(value)
   }
@@ -38,7 +38,6 @@ export default function App() {
     setEditItemsModalIsVisible(value)
   }
   
-
   const addGroceryItem = (groceryItem) => {
     console.log(groceryItem);
     setGroceryItems((gi) => [groceryItem, ...gi]);
@@ -57,8 +56,6 @@ export default function App() {
     setGroceryItems(modifiedGroceryList);
   }
 
-
-
   let screen;
 
   if (!fontsLoaded && !fontError) {
@@ -66,21 +63,24 @@ export default function App() {
   }
 
   if(addItemsModalIsVisible == true) {
-    screen = <AddItemScreen 
+    screen =  <UpdateItemScreen 
+                title = "Add Grocery Items"
                 visible={addItemsModalIsVisible}
                 setVisible = {addModalVisibleHandler} 
-                lastItemId = {!groceryItems.length ? groceryItems[0]?.id : 0}
-                addGroceryItem = {addGroceryItem}
+                confirmButtonText = {"Add"}
+                onItemUpdate = {addGroceryItem}
               />
   } 
   else if (editItemsModalIsVisible == true) {
-    screen = <EditItemScreen 
-              visible = {editItemsModalIsVisible}
-              editItem = {editItem}
-              setVisible = {editModalVisibleHandler}
-              editGroceryItem = {editGroceryItem}
+    screen =  <UpdateItemScreen 
+                title = "Edit Grocery Items"
+                visible={editItemsModalIsVisible}
+                setVisible = {editModalVisibleHandler} 
+                confirmButtonText = {"Edit"}
+                onItemUpdate = {editGroceryItem}
+                editItem = {editItem}
+              />
 
-    />
   }    
   else if(groceryItems.length == 0) {
     screen = <InitialScreen onAddModalVisible = {addModalVisibleHandler}/>
@@ -96,10 +96,6 @@ export default function App() {
     
   }
   
-
-
-  
-
   return (
     <SafeAreaView
       style={styles.rootContainer}

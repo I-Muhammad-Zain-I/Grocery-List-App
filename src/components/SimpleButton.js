@@ -1,16 +1,9 @@
 import React from 'react'
-import { View, Text, StyleSheet, Pressable, Dimensions } from 'react-native'
-import COLORS from '../constants/Color'
-
-
-
-const width = Dimensions.get('window').width
+import { View, Text, Pressable } from 'react-native'
 
 
 const SimpleButton = (props) => {
-
-  // const btnSize = props.size === 'large' ? (width/1.3) : (width/2);
-  // const btnBgColor = props.type === 'filled' ? props.color : 'transparent';
+  
   const btnBorderRadius = props.border ? 30 : 5;
   const border = props.bgColor == 'transparent' ? true : false; 
 
@@ -55,26 +48,4 @@ const SimpleButton = (props) => {
   )
 }
 
-export default SimpleButton
-
-const styles = StyleSheet.create({
-  outerBtnContainer: {
-    borderRadius: 30,
-    width: "70%",
-    overflow: 'hidden',
-    alignSelf: 'center'
-  },
-  innerBtnContainer: {
-    backgroundColor: COLORS['orange-200'],
-    paddingVertical: 10,
-   
-  },
-  pressed: {
-    backgroundColor: COLORS['orange-400'],
-    
-  },
-  buttonText: {
-   
-  }
-})
-
+export default SimpleButton;

@@ -8,30 +8,19 @@ import COLORS from '../constants/Color'
 import Title from '../components/Title'
 
 const EditItemScreen = (props) => {
+  /**
+   * It is not being used and contains newer code than AddItemScreen
+   * props:
+   * visible = {editItemsModalIsVisible}
+     editItem = {editItem}
+     setVisible = {editModalVisibleHandler}
+     editGroceryItem = {editGroceryItem}
+   */
 
-  // const nameValidityFunction = (name) => {
-  //   console.log("bool",  Boolean(name.trim()))
-  //   return Boolean(name.trim())
-  // }
-  // const quantityValidityFunction = (quantity) => {
-  //   console.log("pareseInt",  !isNaN(parseInt(quantity)))
-  //   return !isNaN(parseInt(quantity));
-  // }
+
 
   const nameRef = useRef();
   const quantityRef = useRef();
-
-  // const {
-  //   value: name,
-  //   isValid: nameIsValid,
-  //   onValueChangeHandler: nameChangeHandler
-  // } = useInput(nameValidityFunction);
-
-  // const {
-  //   value: quantity,
-  //   isValid: quantityIsValid,
-  //   onValueChangeHandler: quantityChangeHandler
-  // } = useInput(quantityValidityFunction);
 
 
   const editItemHandler = () => {
@@ -45,6 +34,11 @@ const EditItemScreen = (props) => {
         return;
       }
 
+      // CHANGE 1: Pass a disitinct function to be used here!
+      // Check here if props.editItemExists then pass id else useRandomfunction
+      // Add function will take
+      // modification function will take name, quantity
+      
       let modifiedGroceryItem = {
         id: props.editItem.id,
         name: nameRef.current.value,
@@ -66,7 +60,10 @@ const EditItemScreen = (props) => {
   }
 
 
-
+  // CHANGE 2: Pass Proper Visible, setVisible corresponding Attribute
+  // CHANGE 3: Pass EditItem prop for EditScreen
+  // CHANGE 4: Pass Confirm Button Prop
+  // CHANGE 5: Pass Label {Add, Edit} correspondingly
 
   return (
     <Modal visible={props.visible} animationType='slide'>

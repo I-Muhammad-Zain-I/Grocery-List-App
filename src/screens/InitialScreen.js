@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS['dark-purple-100']
   },
   headerText: {
-    fontFamily: 'lobster-two-regular',
+    fontFamily: 'lobster-two-bold',
     fontSize: 24,
     color: COLORS['red-300']
   }

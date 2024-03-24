@@ -6,6 +6,14 @@ import WarningText from '../components/WarningText';
 import Title from '../components/Title';
 import SimpleButton from '../components/SimpleButton';
 const AddItemScreen = (props) => {
+  /**
+   * It is not being used and contains more older code than edit item screen
+   *  props
+   * visible={addItemsModalIsVisible}
+     setVisible = {addModalVisibleHandler}             
+     addGroceryItem = {addGroceryItem}
+   */
+
 
   const nameValidityFunction = (name) => {
     console.log("bool",  Boolean(name.trim()))

@@ -1,13 +1,9 @@
 import React, { forwardRef, useImperativeHandle } from 'react'
 import useInput from '../hooks/UseInput';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
-import COLORS from '../constants/Color';
+import { TextInput } from 'react-native';
 import WarningText from './WarningText';
 
 const QuantityNumberInput = forwardRef((props, ref) => {
-
-
-
 
   const quantityValidityFunction = (quantity) => {
     console.log("pareseInt", !isNaN(parseInt(quantity)))
