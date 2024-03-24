@@ -6,6 +6,7 @@ import {useFonts} from 'expo-font';
 import InitialScreen from './src/screens/InitialScreen';
 import AddItemScreen from './src/screens/AddItemScreen';
 import DisplayItemScreen from './src/screens/DisplayItemScreen';
+import EditItemScreen from './src/screens/EditItemScreen';
 
 // Keep the splash screen visible while we fetch resources
 SplashScreen.preventAutoHideAsync();
@@ -13,7 +14,9 @@ SplashScreen.preventAutoHideAsync();
 export default function App() {
 
   const [groceryItems, setGroceryItems] = useState([]);
+  const [editItem, setEditItem] = useState(() => {});
   const [addItemsModalIsVisible, setAddItemsModalIsVisible] = useState(false);
+  const [editItemsModalIsVisible, setEditItemsModalIsVisible] = useState(false);
 
   const [fontsLoaded, fontError] = useFonts({
     'lobster-two-regular': require('./assets/fonts/LobsterTwo-Bold.ttf'),
@@ -27,10 +30,15 @@ export default function App() {
       await SplashScreen.hideAsync();
     }
   }, [fontsLoaded, fontError]);
+
   const addModalVisibleHandler = (value) => {
     setAddItemsModalIsVisible(value)
   }
+  const editModalVisibleHandler = (value) => {
+    setEditItemsModalIsVisible(value)
+  }
   
+
   const addGroceryItem = (groceryItem) => {
     console.log(groceryItem);
     setGroceryItems((gi) => [groceryItem, ...gi]);
@@ -43,7 +51,11 @@ export default function App() {
     setGroceryItems(newGroceryList);
   }
 
-
+  const editGroceryItem = (editedGroceryItem) => {
+    console.log(editedGroceryItem);
+    let modifiedGroceryList = groceryItems.map((item) => item.id != editedGroceryItem.id ? item : editedGroceryItem);
+    setGroceryItems(modifiedGroceryList);
+  }
 
 
 
@@ -60,7 +72,16 @@ export default function App() {
                 lastItemId = {!groceryItems.length ? groceryItems[0]?.id : 0}
                 addGroceryItem = {addGroceryItem}
               />
-  }     
+  } 
+  else if (editItemsModalIsVisible == true) {
+    screen = <EditItemScreen 
+              visible = {editItemsModalIsVisible}
+              editItem = {editItem}
+              setVisible = {editModalVisibleHandler}
+              editGroceryItem = {editGroceryItem}
+
+    />
+  }    
   else if(groceryItems.length == 0) {
     screen = <InitialScreen onAddModalVisible = {addModalVisibleHandler}/>
   }
@@ -68,7 +89,9 @@ export default function App() {
     screen = <DisplayItemScreen 
               groceryItems = {groceryItems}
               onAddModalVisible = {addModalVisibleHandler}
+              onEditModalVisible = {editModalVisibleHandler}
               removeGroceryItem = {removeGroceryItem}
+              setEditItem = {setEditItem}
     />
     
   }

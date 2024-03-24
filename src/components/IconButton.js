@@ -7,7 +7,7 @@ const IconButton = (props) => {
 
   const onPressHandler = () => {
     console.log("Icon Button Pressed");
-    props.onPress();
+    props.onPress(true);
   }
 
 

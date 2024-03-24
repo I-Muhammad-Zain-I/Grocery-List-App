@@ -20,12 +20,14 @@ const AddItemScreen = (props) => {
   const {
     value: name,
     isValid: nameIsValid,
+    hasError: nameHasError,
     onValueChangeHandler: nameChangeHandler
   } = useInput(nameValidityFunction);
 
   const {
     value: quantity,
     isValid: quantityIsValid,
+    hasError: quantityHasError,
     onValueChangeHandler: quantityChangeHandler
   } = useInput(quantityValidityFunction);
 
@@ -69,7 +71,7 @@ const AddItemScreen = (props) => {
               style={styles.input}
               placeholder='eg: carrots'
             />
-            {!nameIsValid && <WarningText>Enter valid grocery item.</WarningText>}
+            {nameHasError && <WarningText>Enter valid grocery item.</WarningText>}
           </View>
           <View style={styles.inputInnerContainer}>
             <Text style={styles.inputLabel}>Quantity</Text>
@@ -84,7 +86,7 @@ const AddItemScreen = (props) => {
               placeholder='eg: 3'
 
             />
-            {!quantityIsValid && <WarningText>Enter valid numeric quantity.</WarningText>}
+            {quantityHasError && <WarningText>Enter valid numeric quantity.</WarningText>}
           </View>
         </View>
         <View style={styles.buttonsContainer}>

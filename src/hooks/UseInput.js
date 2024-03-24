@@ -1,25 +1,28 @@
 import React, { useState } from 'react'
 
-const useInput = (validityFunc) => {
-  const [value, setEnteredValue] = useState("");
-  const [touched, setTouched] = useState(false);
+const useInput = (validityFunc, initialValue) => {
+  const [value, setEnteredValue] = useState(initialValue ?? "");
+  const [istouched, setIsTouched] = useState(initialValue != undefined ? true : false);
+
+  console.log("touched", istouched)
 
   const onValueChangeHandler = (enteredValue) => {
-    if(touched == false) {
-      setTouched(true);
+    if(istouched == false) {
+      setIsTouched(true);
     }
     setEnteredValue(enteredValue); 
   }
 
-  console.log('touched', touched)
+  console.log('istouched', istouched)
 
-  const isValid =  validityFunc(value) && touched;
+  const isValid =  validityFunc(value);
 
+  const hasError = !isValid && istouched;
+  
   return {
     value,
     isValid,
-    touched,
-    setTouched,
+    hasError,
     onValueChangeHandler
   }
 }

@@ -43,25 +43,28 @@ const DisplayItemScreen = (props) => {
         textColor={COLORS['orange-800']}
         onPress={onPressHandler}
       />
+
       <Searchbar onSearch={searchHandler} />
 
       <View style={styles.listItemContainer}>
-        {!showNotFound &&
-          <FlatList
-            data={(searchedItems.length > 0) ? searchedItems : props.groceryItems}
-            renderItem={(itemData) => <GroceryItem item={itemData.item} onRemove={removeHandler} />}
-            keyExtractor={(item) => item.id}
-            alwaysBounceVertical={true}
-          />
-        }
-        {
-          showNotFound &&
 
-          <View style={styles.searchFailedContainer}>
+        {showNotFound ?
+
+          (<View style={styles.searchFailedContainer}>
             <Image style={styles.searchFailed} source={require('../../assets/images/searchFailed.png')} />
             <Text style={styles.notFoundText}>Didn't Find Any results</Text>
-          </View>
+          </View>)
+
+          :
+        
+          (<FlatList
+            data={(searchedItems.length > 0) ? searchedItems : props.groceryItems}
+            renderItem={(itemData) => <GroceryItem item={itemData.item} onRemove={removeHandler} setEditItem={props.setEditItem} editModalVisible = {props.onEditModalVisible} />}
+            keyExtractor={(item) => item.id}
+            alwaysBounceVertical={true}
+          />)
         }
+
       </View>
 
     </View>

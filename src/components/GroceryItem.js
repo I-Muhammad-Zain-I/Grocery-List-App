@@ -5,17 +5,20 @@ import IconButton from './IconButton'
 
 const GroceryItem = (props) => {
 
-  const onPressHandler = () => {
+  const onPressRemoveHandler = () => {
     console.log("List Item Pressed");
     props.onRemove(props.item.id)
   }
 
-
+  const onPressEditHandler = () => {
+    props.setEditItem(props.item)
+    props.editModalVisible(true);
+  }
 
   return (
     <Pressable 
       style={({pressed}) => (pressed ? [styles.rootContainer, styles.pressed] : styles.rootContainer)}
-      onPress={onPressHandler}
+      onPress={onPressRemoveHandler}
     >
      
         <View style={styles.textContainer}>
@@ -27,6 +30,7 @@ const GroceryItem = (props) => {
           <IconButton 
             source={require('../../assets/images/edit.png')} 
             bgColor = {COLORS['turquoise-100']}
+            onPress = {onPressEditHandler}
           />
           {/* <IconButton source={require('../../assets/images/delete.png')} /> */}
         </View>
